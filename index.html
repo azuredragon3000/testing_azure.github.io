@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Flask API Example</title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <button id="fetchButton">Fetch Response</button>
-    <p>Server response: <span id="server-response"></span></p>
+    <h1 id="message">Hello, Flask!</h1>
+    <button onclick="toggleMessage()">Toggle Message</button>
+
     <script>
-        document.getElementById('fetchButton').addEventListener('click', function () {
-            fetch('https://your-heroku-app.herokuapp.com/')
-                .then(response => response.text())
-                .then(data => document.getElementById('server-response').innerText = data);
-        });
+        function toggleMessage() {
+            var messageElement = document.getElementById('message');
+            if (messageElement.innerText === 'Hello, Flask!') {
+                messageElement.innerText = 'Hello, World!';
+            } else {
+                messageElement.innerText = 'Hello, Flask!';
+            }
+        }
     </script>
 </body>
 </html>
