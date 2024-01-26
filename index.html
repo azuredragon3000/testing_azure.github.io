@@ -20,9 +20,25 @@
                 'clientId': '989394478630-s5b910djjf197lf04a8h58s9e3eluf1m.apps.googleusercontent.com',
                 'scope': 'profile',
             }).then(function() {
-                // 3. Initialize and make the API request.
-                document.getElementById('message').innerText = 'API request...';
-               return gapi.client.admob.accounts.list({});
+                // Initialization successful
+                document.getElementById('message').innerText = 'Initialization successful. Authenticating...';
+                var authInstance = gapi.auth2.getAuthInstance();
+                if (authInstance.isSignedIn.get()) {
+                    // User is already signed in, authentication successful
+                    document.getElementById('message').innerText = 'Authentication successful. Making API request...';
+                    makeApiRequest();
+                } else {
+                    // User is not signed in, prompt for authentication
+                    authInstance.signIn().then(function() {
+                        // Authentication successful
+                        document.getElementById('message').innerText = 'Authentication successful. Making API request...';
+                        makeApiRequest();
+                    }).catch(function(error) {
+                        // Error occurred during authentication
+                        console.error('Authentication Error:', error);
+                        document.getElementById('message').innerText = 'Failed to authenticate. ' + (error.error || 'Unknown error occurred.');
+                    });
+                }
             }).then(function(response) {
                 console.log(response.result);
                 document.getElementById('message').innerText = 'AdMob data loaded successfully.'+response.result;
