@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask API Example</title>
 </head>
-<body>
-    <h1 id="message">Hello, Flask!</h1>
+<body onload="updateMessage()">
+    <h1 id="message">Hello, Flask - <span id="datetime"></span></h1>
     <button onclick="toggleMessage()">Toggle Message</button>
 
     <script>
+        function updateMessage() {
+            var datetimeElement = document.getElementById('datetime');
+            var currentTime = new Date().toLocaleString(); // Get current time in local date format
+            datetimeElement.innerText = currentTime;
+        }
+
         function toggleMessage() {
-            
             var messageElement = document.getElementById('message');
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/api_endpoint", true);
@@ -23,15 +28,15 @@
                     } else {
                         messageElement.innerText = "Failed to fetch data from the API.";
                     }
+                    messageElement.innerText += " Ready to work."; // Move this line inside the if-else block
                 }
             };
             xhr.onerror = function() {
                 messageElement.innerText = "An error occurred while making the request.";
             };
             xhr.send();
-
-            messageElement.innerText = "Ready to work.";
         }
     </script>
 </body>
 </html>
+
