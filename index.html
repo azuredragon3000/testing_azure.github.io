@@ -13,23 +13,20 @@
     <script>
         function start() {
             document.getElementById('message').innerText = 'Loading AdMob data...';
-            // 2. Initialize the JavaScript client library.
+            // Initialize the JavaScript client library.
             gapi.client.init({
                 'apiKey': 'AIzaSyDxvkW93By11leZq3ngoox-DMIuqTXN7Mw',
                 'clientId': '989394478630-s5b910djjf197lf04a8h58s9e3eluf1m.apps.googleusercontent.com',
             }).then(function() {
-                // Initialization successful
-                document.getElementById('message').innerText = 'Initialization successful. Authenticating...';
+                // Authentication successful
                 var authInstance = gapi.auth2.getAuthInstance();
                 if (authInstance.isSignedIn.get()) {
-                    // User is already signed in, authentication successful
-                    document.getElementById('message').innerText = 'Authentication successful. Making API request...';
+                    // User is already signed in, proceed with API request
                     makeApiRequest();
                 } else {
                     // User is not signed in, prompt for authentication
                     authInstance.signIn().then(function() {
-                        // Authentication successful
-                        document.getElementById('message').innerText = 'Authentication successful. Making API request...';
+                        // Authentication successful, proceed with API request
                         makeApiRequest();
                     }).catch(function(error) {
                         // Error occurred during authentication
@@ -37,29 +34,31 @@
                         document.getElementById('message').innerText = 'Failed to authenticate. ' + (error.error || 'Unknown error occurred.');
                     });
                 }
-            }).then(function(response) {
-                console.log(response.result);
-                document.getElementById('message').innerText = 'AdMob data loaded successfully.'+response.result;
             }).catch(function(error) {
-                console.error('Error:', error.message);
-                if (error && error.message === 'Init failed') 
-                {
-                    // Error occurred during initialization
-                    document.getElementById('message').innerText = 'Failed to initialize the client library. ' + error.message;
-                } 
-                else 
-                {
-                    // Error occurred during API request
-                    var errorMessage = error.message || 'Unknown error occurred.';
-                    document.getElementById('message').innerText = 'Failed to load AdMob data. ' + errorMessage;
-                }
+                // Error occurred during initialization
+                console.error('Initialization Error:', error);
+                document.getElementById('message').innerText = 'Failed to initialize the client library. ' + (error.error || 'Unknown error occurred.');
             });
         }
 
         function toggleMessage() {
             document.getElementById('message').innerText = 'Loading AdMob data...';
-            // 1. Load the JavaScript client library.
+            // Load the JavaScript client library
             gapi.load('client', start);
+        }
+
+        function makeApiRequest() {
+            // Make API request to AdMob API
+            // Replace this with your actual API request logic
+            document.getElementById('message').innerText = 'Making API request...';
+            gapi.client.admob.accounts.list({}).then(function(response) {
+                console.log(response.result);
+                document.getElementById('message').innerText = 'AdMob data loaded successfully.';
+            }).catch(function(error) {
+                console.error('API Request Error:', error);
+                var errorMessage = error.message || 'Unknown error occurred.';
+                document.getElementById('message').innerText = 'Failed to load AdMob data. ' + errorMessage;
+            });
         }
     </script>
 </body>
