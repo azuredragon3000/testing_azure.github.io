@@ -25,10 +25,10 @@
                return gapi.client.admob.accounts.list({});
             }).then(function(response) {
                 console.log(response.result);
-                document.getElementById('message').innerText = 'AdMob data loaded successfully.';
+                document.getElementById('message').innerText = 'AdMob data loaded successfully.'+response.result;
             }).catch(function(error) {
                 console.error('Error:', error.message);
-                document.getElementById('message').innerText = 'Failed to load AdMob data.';
+                document.getElementById('message').innerText = 'Failed to load AdMob data.'+ error.message;
             });
         }
 
