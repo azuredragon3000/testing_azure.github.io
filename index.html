@@ -11,7 +11,7 @@
 
     <script>
         function toggleMessage() {
-            messageElement.innerText = "Ready to work.";
+            
             var messageElement = document.getElementById('message');
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/api_endpoint", true);
@@ -29,6 +29,8 @@
                 messageElement.innerText = "An error occurred while making the request.";
             };
             xhr.send();
+
+            messageElement.innerText = "Ready to work.";
         }
     </script>
 </body>
