@@ -5,40 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdMob API Example</title>
 </head>
-<body onload="start()">
+<body>
     <h1 id="message">AdMob API Example</h1>
     <button onclick="toggleMessage()">Toggle Message</button>
 
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
         function start() {
-            const apiKey = 'AIzaSyDxvkW93By11leZq3ngoox-DMIuqTXN7Mw'; // Replace with your AdMob API key
-
-            fetch('https://admob.googleapis.com/v1/accounts', {
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
+            // 2. Initialize the JavaScript client library.
+            gapi.client.init({
+                'apiKey': 'AIzaSyDxvkW93By11leZq3ngoox-DMIuqTXN7Mw',
+                'discoveryDocs': ['https://admob.googleapis.com/$discovery/rest'],
+                'clientId': '989394478630-s5b910djjf197lf04a8h58s9e3eluf1m.apps.googleusercontent.com',
+                'scope': 'profile',
+            }).then(function() {
+                // 3. Initialize and make the API request.
+                return gapi.client.people.people.get({
+                    'resourceName': 'people/me',
+                    'requestMask.includeField': 'person.names'
+                });
+            }).then(function(response) {
+                console.log(response.result);
+                document.getElementById('message').innerText = 'AdMob data loaded successfully.';
+            }).catch(function(error) {
+                console.error('Error:', error.message);
+                document.getElementById('message').innerText = 'Failed to load AdMob data.';
             });
         }
 
         function toggleMessage() {
             document.getElementById('message').innerText = 'Loading AdMob data...';
-
-            // Call the start function to make the API request
-            start();
+            // 1. Load the JavaScript client library.
+            gapi.load('client', start);
         }
     </script>
 </body>
