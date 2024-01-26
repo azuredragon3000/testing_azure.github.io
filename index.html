@@ -28,7 +28,17 @@
                 document.getElementById('message').innerText = 'AdMob data loaded successfully.'+response.result;
             }).catch(function(error) {
                 console.error('Error:', error.message);
-                document.getElementById('message').innerText = 'Failed to load AdMob data2 error:'+ error.message;
+                if (error && error.message === 'Init failed') 
+                {
+                    // Error occurred during initialization
+                    document.getElementById('message').innerText = 'Failed to initialize the client library. ' + error.message;
+                } 
+                else 
+                {
+                    // Error occurred during API request
+                    var errorMessage = error.message || 'Unknown error occurred.';
+                    document.getElementById('message').innerText = 'Failed to load AdMob data. ' + errorMessage;
+                }
             });
         }
 
