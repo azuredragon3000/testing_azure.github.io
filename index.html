@@ -15,14 +15,20 @@
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/api_endpoint", true);
             xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    messageElement.innerText = response.message;
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        messageElement.innerText = response.message;
+                    } else {
+                        messageElement.innerText = "Failed to fetch data from the API.";
+                    }
                 }
+            };
+            xhr.onerror = function() {
+                messageElement.innerText = "An error occurred while making the request.";
             };
             xhr.send();
         }
     </script>
 </body>
 </html>
-
