@@ -19,7 +19,7 @@
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
-                        messageElement.innerText = response.message;
+                        messageElement.innerText = "Ready to work but nothing happen";
                     } else {
                         messageElement.innerText = "Failed to fetch data from the API.";
                     }
