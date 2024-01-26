@@ -12,6 +12,7 @@
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
         function start() {
+            document.getElementById('message').innerText = 'Loading AdMob data...';
             // 2. Initialize the JavaScript client library.
             gapi.client.init({
                 'apiKey': 'AIzaSyDxvkW93By11leZq3ngoox-DMIuqTXN7Mw',
@@ -20,6 +21,7 @@
                 'scope': 'profile',
             }).then(function() {
                 // 3. Initialize and make the API request.
+                document.getElementById('message').innerText = 'API request...';
                 return gapi.client.people.people.get({
                     'resourceName': 'people/me',
                     'requestMask.includeField': 'person.names'
