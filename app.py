@@ -1,6 +1,15 @@
+import socket
 from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
+
+def find_free_port():
+    """Find a free port."""
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(('localhost', 0))  # Bind to localhost and let the OS assign a free port
+    _, port = sock.getsockname()  # Get the assigned port
+    sock.close()  # Close the socket
+    return port
 
 @app.route('/')
 def home():
@@ -18,4 +27,6 @@ def api_endpoint():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    port = find_free_port()
+    print(f'Free port found: {port}')
+    app.run(debug=True, port=port)
