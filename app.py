@@ -13,7 +13,7 @@ def find_free_port():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+   return 'Hello from Flask!'
 
 @app.route('/api_endpoint')
 def api_endpoint():
