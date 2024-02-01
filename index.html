@@ -6,16 +6,22 @@
     <title>Flask API Example</title>
 </head>
 <body>
-    <h1>Hello, Flask!</h1>
-    <button onclick="callAPI()">Call API</button>
+    <h1 id="apiResponse">API Response: Loading...</h1>
 
     <script>
-        function callAPI() {
-            fetch('/api_endpoint_cuong')  // Change the URL to match your Flask API endpoint
-                .then(response => response.text())
-                .then(data => alert(data))  // Display the API response in an alert box
+        // Function to fetch data from Flask API endpoint
+        function fetchData() {
+            fetch('/api_endpoint')  // Change the URL to match your Flask API endpoint
+                .then(response => response.json())
+                .then(data => {
+                    // Update header with API response
+                    document.getElementById('apiResponse').textContent = 'API Response: ' + data.message;
+                })
                 .catch(error => console.error('Error:', error));
         }
+
+        // Call the fetchData function when the page loads
+        window.onload = fetchData;
     </script>
 </body>
 </html>
