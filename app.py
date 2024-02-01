@@ -15,7 +15,7 @@ def find_free_port():
 def home():
    return 'Hello from Flask!'
 
-@app.route('/api_endpoint')
+@app.route('/api_endpoint_cuong')
 def api_endpoint():
     # Simulating data retrieval from the API
     try:
