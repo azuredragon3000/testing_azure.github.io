@@ -15,6 +15,16 @@ def find_free_port():
 def home():
    return 'Hello from Flask!'
 
+@app.route('/my-first-api', methods = ['GET'])
+def hello():
+    name = request.args.get('name')
+    if name is None:
+        text = 'Hello!'
+    else:
+        text = 'Hello ' + name + '!'
+    return text
+
+
 @app.route('/api_endpoint_cuong')
 def api_endpoint():
     # Simulating data retrieval from the API
