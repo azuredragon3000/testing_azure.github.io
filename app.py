@@ -39,4 +39,4 @@ def api_endpoint():
 if __name__ == '__main__':
     port = find_free_port()
     print(f'Free port found: {port}')
-    app.run(debug=True, port=port)
+    app.run(host='0.0.0.0', port=port)
