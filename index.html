@@ -8,16 +8,22 @@
 <body>
     <h1>Call Flask API</h1>
 
-    <!-- Button to call the API -->
-    <button onclick="callAPI()">Call API</button>
-
+    
+    
+    <form id="apiForm">
+        <label for="name">Enter your name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <button type="button" onclick="callAPI()">Submit</button>
+    </form>
+    
     <!-- Display API response -->
     <p id="apiResponse"></p>
 
     <script>
         function callAPI() {
-            const url = '/my-first-api';
-    
+            
+            const name = document.getElementById('name').value;
+            const url = '/my-first-api?name=${name}';
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
