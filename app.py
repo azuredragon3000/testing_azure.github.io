@@ -1,7 +1,9 @@
 import socket
-from flask import Flask, render_template, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS support for all routes
 
 def find_free_port():
     """Find a free port."""
@@ -13,17 +15,15 @@ def find_free_port():
 
 @app.route('/')
 def home():
-   return 'Hello from Flask!'
+    return 'Hello from Flask!'
 
-@app.route('/my-first-api', methods = ['GET'])
+@app.route('/my-first-api', methods=['GET'])
 def hello():
     name = request.args.get('name')
-    if name is None:
-        text = 'Hello!'
+    if not name:
+        return 'Hello!'
     else:
-        text = 'Hello ' + name + '!'
-    return text
-
+        return f'Hello {name}!'
 
 @app.route('/api_endpoint_cuong')
 def api_endpoint():
@@ -39,4 +39,4 @@ def api_endpoint():
 if __name__ == '__main__':
     port = find_free_port()
     print(f'Free port found: {port}')
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)  # Run the app on the dynamically assigned port
