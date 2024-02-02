@@ -23,7 +23,7 @@
         function callAPI() {
             
             const name = document.getElementById('name').value;
-            const url = '/my-first-api?name=${name}';
+            const url = 'http://127.0.0.1:58947/my-first-api?name=${name}';
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
