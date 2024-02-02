@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask API Example</title>
+    <title>Call Flask API</title>
 </head>
 <body>
-    <h1 id="apiResponse">API Response: </h1>
+    <h1>Call Flask API</h1>
 
     <!-- Button to call the API -->
     <button onclick="callAPI()">Call API</button>
 
+    <!-- Display API response -->
+    <p id="apiResponse"></p>
+
     <script>
-        // Function to call the Flask API endpoint
         function callAPI() {
-            fetch('/api_endpoint_cuong')  // Change the URL to match your Flask API endpoint
-                .then(response => response.json())
-                .then(data => {
-                    // Update header with API response
-                    document.getElementById('apiResponse').textContent = 'API Response: ' + data.message;
+            const url = '/my-first-api';
+    
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to call API');
+                    }
+                    return response.text();
                 })
-                .catch(error => console.error('Error:', error));
+                .then(data => {
+                    document.getElementById('apiResponse').textContent = data;
+                })
+                .catch(error => {
+                    document.getElementById('apiResponse').textContent = 'Error: ' + error.message;
+                });
         }
     </script>
 </body>
