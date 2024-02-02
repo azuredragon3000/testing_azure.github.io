@@ -23,7 +23,8 @@
         function callAPI() {
             
             const name = document.getElementById('name').value;
-            const url = 'http://phanhuycuong.pythonanywhere.com:56157/my-first-api?name=${name}';
+            const url = `http://phanhuycuong.pythonanywhere.com:56157/my-first-api?name=${encodeURIComponent(name)}`;
+
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
