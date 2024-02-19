@@ -7,3 +7,26 @@ itsdangerous==2.1.2
 Jinja2==3.1.3
 MarkupSafe==2.1.4
 Werkzeug==3.0.1
+
+I find this job quite suitable for me, could you please provide specific plan for this job?
+Below is my comments on the required skills
+Very solid experience of embedded software development
+I have solid experience in Embedded software development with over 12 years of experience working in Automotive domain.
+Great understanding of autosar basic software configuration and tools
+I frequently work with configuration tools for AUTOSAR such as CAN and LIN software configuration.
+Good understanding of application development on an autosar platform
+Yes I have good understanding of application development on an AUTOSAR platform, from providing software design using enterprise architecture tools to implementing code and testing.
+Have a clear of idea of what quality managed software means
+When working with AUTOSAR, I always prioritize quality output by closely following coding guidelines, avoiding MISRA warnings, ensuring code simplicity for understanding and maintenance, and guaranteeing that the output is 100% verified and validated against requirements following strict processes such as ASPICE and ISO26262.
+Great C programming skills
+Among the programming languages I know, C is the one I am most proficient in.
+Fluent in spoken and written English
+My English is good enough for work and I am also improving every day.
+Great knowledge within fault tracing, application development development, basic software configuration and HI tool chain
+I have experience in fault tracing, however I lack experience with HI tools, I am very willing to learn it.
+Skill with use Lauterbach/trace32
+yes, I have used this tool before to debug code.
+Scripting knowledge eg Python, bash and make
+I am strong in scripting languages such as Python and Java, I often use them to write automation scripts to automate repetitive tasks, saving time and cost
+You have fun teaching and explaining complex correlations
+During my work, I often share knowledge and experiences with teams and I also actively participate in training sessions for newcomers
